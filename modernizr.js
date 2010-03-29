@@ -87,6 +87,7 @@ window.Modernizr = (function(window,doc,undefined){
     borderimage = 'borderimage',
     borderradius = 'borderradius',
     boxshadow = 'boxshadow',
+    textshadow = 'textshadow',
     opacity = 'opacity',
     cssanimations = 'cssanimations',
     csscolumns = 'csscolumns',
@@ -123,7 +124,10 @@ window.Modernizr = (function(window,doc,undefined){
     draganddrop = 'draganddrop',
     websqldatabase = 'websqldatabase',
     websocket = 'websocket',
-    flash = 'flash';
+    flash = 'flash',
+    positionfixed = 'positionfixed',
+    pngtransparency = 'pngtransparency',
+    minmaxheightwidth = 'minmaxheightwidth';
     var 
     
     toString = Object.prototype.toString,
@@ -214,6 +218,12 @@ window.Modernizr = (function(window,doc,undefined){
      */
     function test_props( props, callback ) {
         for ( var i in props ) {
+            /*if (isIE){
+                if (test_prop_ie( props[i] ))
+                    return true;
+            }
+            else 
+            */
             if ( m_style[ props[i] ] !== undefined && ( !callback || callback( props[i] ) ) ) {
                 return true;
             }
@@ -380,6 +390,9 @@ window.Modernizr = (function(window,doc,undefined){
         return test_props_all( 'boxShadow' );
     };
     
+    tests[textshadow] = function() {
+        return test_props_all( 'textShadow' );
+    };
     
     tests[opacity] = function() {
         // Browsers that actually have CSS Opacity implemented have done so
@@ -649,8 +662,26 @@ window.Modernizr = (function(window,doc,undefined){
     tests[smil] = function(){
         return document.createElementNS && /SVG/.test(toString.call(document.createElementNS('http://www.w3.org/2000/svg','animate')));
     };
+    
+    function parseVersion(version){
+        var parts = version.split('.')
+        return parseFloat(parts[0] + '.' + parts.slice(1).join(''))
+    }
+    var m = navigator.userAgent.match(/MSIE ([0-9]+(\.[0-9]+)+)/)
+    var isIE = m != null
+    var ieVersion = isIE ? parseVersion(m[1]) : null
 
-
+    tests[positionfixed] = function(){
+        return !isIE || ieVersion >= 7
+    };
+    
+    tests[pngtransparency] = function(){
+        return !isIE || ieVersion >= 7
+    };
+    
+    tests[minmaxheightwidth] = function(){
+        return test_props_all( 'minWidth' );
+    };
 
     // input features and input types go directly onto the ret object, bypassing the tests loop.
     // hold this guy to execute conditionally.
@@ -682,6 +713,8 @@ window.Modernizr = (function(window,doc,undefined){
         })('search tel url email datetime date month week time datetime-local number range color'.split(' '));
 
     }
+    
+
 
 
 

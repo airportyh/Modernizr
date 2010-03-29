@@ -7,8 +7,11 @@
     <link href="style.css" media="screen" rel="stylesheet" type="text/css">
 	  <script type="text/javascript" src="../modernizr.js"></script>
     <script type="text/javascript" src="marklet.js"></script>
-    
-
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById('console').innerHTML = document.documentElement.className
+      }
+    </script>
   </head>
   <body>
     <div id="frame">
@@ -36,6 +39,9 @@
         then the <code>HasNiftyFeature</code> class would be added onto &lt;body&gt; if it's supported by your
         browser. A list of features
         that CSS.Features checks for is listed below.
+      </p>
+      <p id="console">
+        
       </p>
   </div>
   </body>

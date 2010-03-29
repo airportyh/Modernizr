@@ -15,38 +15,53 @@ function go(){
         'hsla',
         'multiplebgs',
         'opacity',
-        'rgba'
+        'rgba',
+        'textshadow',
+        'positionfixed',
+        'pngtransparency'
     ]
     var profiles = {}
-    profiles['IE'] = [
+    profiles['IE 6'] = [
         false, false, false, false, false, 
         false, false, false, false, false, 
-        false, true, false, false, false, false
+        false, true, false, false, false, 
+        false, false, false, false
+    ]
+    profiles['IE 7-8'] = [
+        false, false, false, false, false, 
+        false, false, false, false, false, 
+        false, true, false, false, false, 
+        false, false, true, true
     ]
     profiles['Opera'] = [
         false, false, false, false, false, 
         false, false, false, false, false, 
-        false, true, true, false, true, true
+        false, true, true, false, true, 
+        true, true, true, true
     ]
     profiles['Firefox 2'] = [
         false, true, false, false, true, 
         false, false, false, false, false, 
-        false, false, false, false, true, false
+        false, false, false, false, true, 
+        false, false, true, true
     ]
     profiles['Firefox 3.5'] = [
         true, true, true, false, true, 
         false, false, true, false, false, 
-        true, false, false, false, true, true
+        true, false, false, false, true, 
+        true, true, true, true
     ]
     profiles['Safari 4'] = [
         true, true, true, true, true, 
         true, true, true, true, true, 
-        false, true, true, true, true, true
+        false, true, true, true, true, 
+        true, true, true, true
     ]
     profiles['Chrome'] = [
         true, true, true, true, true, 
         true, true, true, false, true, 
-        false, true, true, true, true, true
+        false, true, true, true, true, 
+        true, true, true, true
     ]
     function keys(obj){
         var ret = []
