@@ -218,12 +218,6 @@ window.Modernizr = (function(window,doc,undefined){
      */
     function test_props( props, callback ) {
         for ( var i in props ) {
-            /*if (isIE){
-                if (test_prop_ie( props[i] ))
-                    return true;
-            }
-            else 
-            */
             if ( m_style[ props[i] ] !== undefined && ( !callback || callback( props[i] ) ) ) {
                 return true;
             }
